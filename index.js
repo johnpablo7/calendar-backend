@@ -9,12 +9,6 @@ app.use(express.static("public"));
 
 // Rutas
 app.use("/api/auth", require("./routes/auth"));
-// app.get("/", (req, res) => {
-//   // console.log("Se requiere el /");
-//   res.json({
-//     ok: true,
-//   });
-// });
 
 // Escuchar peticiones
 app.listen(process.env.PORT, () => {
