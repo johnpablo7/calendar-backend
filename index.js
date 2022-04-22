@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const { dbConnection } = require("./database/config");
+const path = require("path");
 
 // Crear el servidor de express
 const app = express();
@@ -21,6 +22,11 @@ app.use(express.json());
 // Rutas
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/events", require("./routes/events"));
+
+// Al final, si no se encuentra ninguna ruta definida, servimos el index.html del SPA.
+app.get("*", (req, res) =>
+  res.sendFile(path.resolve(__dirname, "public/index.html"))
+);
 
 // Escuchar peticiones
 app.listen(process.env.PORT, () => {
